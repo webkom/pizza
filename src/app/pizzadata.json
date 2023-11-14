@@ -7,5 +7,9 @@
     {
         "name": "Kvess",
         "price": 195
+    },
+    {
+        "name": "Drengen",
+        "price": 159
     }
 ]
