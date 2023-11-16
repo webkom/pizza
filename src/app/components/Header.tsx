@@ -27,16 +27,14 @@ const NavBar = () => {
         },
     ];
 
-    return (
-        <>    
-            <div className="navbar">
-                {links.map((link: NavbarLink)=> (
-                    <Link className={'link ${pathname === "/" ? "active" : ""}'} href='/'>
-                        {link.title}
-                    </Link>
-                ))}
-            </div>
-        </>
+    return (  
+        <div className="navbar">
+            {links.map((link: NavbarLink)=> (
+                <Link className={'link ${pathname === "/" ? "active" : ""}'} href='/'>
+                    {link.title}
+                </Link>
+            ))}
+        </div>
     )
 }
 
