@@ -1,0 +1,53 @@
+.modal {
+    position: fixed;
+    left: 20vw;
+    top: 10vh;
+    width: 60vw;
+    height: 80vh;
+    display: flex;
+}
+.modalBilde {
+    width: 100%;
+    z-index: -1;
+    border-radius: 20px;
+    border: 3px solid black;
+}
+
+.modalInfo {
+    position: fixed;
+    left: 40vw;
+    top: 30vh;
+    width: 20vw;
+    height: 40vh;
+
+
+
+
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 20vw;
+    height: 50vh;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+}
+
+
+.modalTitle {
+    height: 2fr;
+    
+
+}
+
+.modalPrice {
+
+    height: 1fr;
+
+}
+.modalDesc {
+    height: 1fr;
+
+    
+}

@@ -7,6 +7,7 @@ import "./components/navbar.css"
 export default function Home() {
   return (
     <main>
+
       <NavBar/>
       
       <h1 className='Header'>VELKOMMEN TIL PIZZA-O-METER</h1>
@@ -16,6 +17,7 @@ export default function Home() {
                                                          <p className='PizzaName'>{pizza.name}</p>
                                                          <p className='PizzaPrice'>{pizza.price},- kr</p> 
                                                          <p className='Stars'>&#9734;&#9734;&#9734;&#9734;&#9734;</p></div></button>)}</div>
+
     </main>
   )
 }
