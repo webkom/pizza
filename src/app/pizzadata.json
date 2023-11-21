@@ -1,64 +1,74 @@
-[
+[ 
     
     {
         "id": 1,
         "name": "Den enkle",
         "price": 149,
-        "img": "DenEnkle.jpg"
+        "img": "DenEnkle.jpg",
+        "description":"HALLABALLA"
     },
     {
         "id": 2,
         "name": "Kvess",
         "price": 195,
-        "img": "Kvess.jpg"
+        "img": "Kvess.jpg",
+        "description":"HALLABALLA"
     },
     {
         "id": 3,
         "name": "Drømmen",
         "price": 195,
-        "img": "Drømmen.jpg"
+        "img": "Drømmen.jpg",
+        "description":"HALLABALLA"
     },
     {
         "id": 4,
         "name": "Pizzabakeren Spesial",
         "price": 219,
-        "img": "PizzabakerenSpesial.jpg"
+        "img": "PizzabakerenSpesial.jpg",
+        "description":"HALLABALLA"
     },
     {
         "id": 5,
         "name": "Snadder",
         "price": 209,
-        "img": "Snadder.jpg"
+        "img": "Snadder.jpg",
+        "description":"HALLABALLA"
     },
     {
         "id": 6,
         "name": "Mix",
         "price": 209,
-        "img": "Mix.jpg"
+        "img": "Mix.jpg",
+        "description":"HALLABALLA"
     },
     {
         "id": 7,
         "name": "Meksikaneren",
         "price": 245,
-        "img": "Meksikaneren.jpg"
+        "img": "Meksikaneren.jpg",
+        "description":"HALLABALLA"
     },
     {
         "id": 8,
         "name": "Biffen",
         "price": 245,
-        "img": "Biffen.jpg"
+        "img": "Biffen.jpg",
+        "description":"HALLABALLA"
     },
     {
         "id": 9,
         "name": "Den Marinerte",
         "price": 239,
-        "img": "DenMarinerte.jpg"
+        "img": "DenMarinerte.jpg",
+        "description":"HALLABALLA"
     },
     {
         "id": 10,
         "name": "Peppersvennen",
         "price": 239,
-        "img": "Peppersvennen.jpg"
+        "img": "Peppersvennen.jpg",
+        "description":"HALLABALLA"
     }
 ]
 
