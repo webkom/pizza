@@ -5,12 +5,14 @@
     width: 60vw;
     height: 80vh;
     display: flex;
+    
 }
 .modalBilde {
     width: 100%;
     z-index: -1;
     border-radius: 20px;
     border: 3px solid black;
+    background-color: black;
 }
 
 .modalInfo {

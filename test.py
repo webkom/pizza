@@ -1,64 +1,68 @@
-[
-    
+a = [
     {
-        "id": 1,
         "name": "Den enkle",
         "price": 149,
-        "img": "DenEnkle.jpg"
+        "img":"DenEnkle.jpg"
+        
     },
     {
-        "id": 2,
         "name": "Kvess",
         "price": 195,
         "img": "Kvess.jpg"
     },
     {
-        "id": 3,
         "name": "Drømmen",
         "price": 195,
-        "img": "Drømmen.jpg"
+        "img":"Drømmen.jpg"
     },
     {
-        "id": 4,
         "name": "Pizzabakeren Spesial",
         "price": 219,
-        "img": "PizzabakerenSpesial.jpg"
+        "img":"PizzabakerenSpesial.jpg"
     },
     {
-        "id": 5,
         "name": "Snadder",
         "price": 209,
-        "img": "Snadder.jpg"
+        "img":"Snadder.jpg"
     },
     {
-        "id": 6,
         "name": "Mix",
         "price": 209,
-        "img": "Mix.jpg"
+        "img":"Mix.jpg"
     },
     {
-        "id": 7,
         "name": "Meksikaneren",
         "price": 245,
-        "img": "Meksikaneren.jpg"
+        "img":"Meksikaneren.jpg"
     },
     {
-        "id": 8,
         "name": "Biffen",
         "price": 245,
-        "img": "Biffen.jpg"
+        "img":"Biffen.jpg"
     },
     {
-        "id": 9,
         "name": "Den Marinerte",
         "price": 239,
-        "img": "DenMarinerte.jpg"
+        "img":"DenMarinerte.jpg"
     },
     {
-        "id": 10,
         "name": "Peppersvennen",
         "price": 239,
-        "img": "Peppersvennen.jpg"
-    }
+        "img":"Peppersvennen.jpg"
+    } 
 ]
+import random as rd
+import json
+b = []
+for ele in a:
 
+    b.append( {
+        "id": rd.randint(10**5, 10**6-1),
+        "name": ele["name"],
+        "price": ele["price"],
+        "img": ele["img"],
+    }
+        
+
+    )
+print(json.dumps(b))
