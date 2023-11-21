@@ -15,10 +15,14 @@ type pizzaProps = {
 
 
 type modalProps = {
-    "idnr":number
+    "id_nummer": string;
+    "func": () => void;
+
 }
 
-const Modal = ({id_nummer}:modalProps) => {
+
+const Modal = ({id_nummer, func}: modalProps) => {
+
 
     const [pizza, setPizza] = useState<pizzaProps>({
         "id": 0,
@@ -32,11 +36,10 @@ const Modal = ({id_nummer}:modalProps) => {
             if (elem.id == id_nummer) {
                 setPizza(elem)
     
-    
             }
         }
     
-    }, []   )
+    }, [id_nummer]   )
     
 
 
@@ -65,19 +68,26 @@ const Modal = ({id_nummer}:modalProps) => {
 
     }
 
+    const closeModal = () => {
+        func()
+    }
+
 
    
 
     return (
 
-        <div>
+        <div >
+            
             <div className="modal" >
                 <img src={pizza.img} alt="hei" className="modalBilde" />
-                
+                <div className="close" onClick={closeModal}>
+                    <img id="closeLogo" src="CloseButton.svg" alt="closebutton" />
+                </div>
             </div>
             <div className="modalInfo" >
                 
-                <h1 className="modalTitle">{pizza.name} </h1>
+                <h1 className="modalTitle" >{pizza.name} </h1>
                 <h3 className="modalPrice" >{pizza.price} </h3>
                 <p className="modalDesc">En veldig fin pizza </p>
                 <div className="rating" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e)}} >
@@ -88,6 +98,7 @@ const Modal = ({id_nummer}:modalProps) => {
                     <span id="modalR5">&#9734;</span>
 
                 </div>
+                
 
 
 
