@@ -1,12 +1,46 @@
 'use client';
 import "./Modal.css"
+import pizzas from "../pizzadata.json"
+import { useEffect, useState } from "react";
+import { json } from "stream/consumers";
+
+
+type pizzaProps = {
+    "id":number,
+    "name":string,
+    "price":number,
+    "img":string,
+}
 
 
 
+type modalProps = {
+    "idnr":number
+}
 
+const Modal = ({id_nummer}:modalProps) => {
 
-const Modal = () => {
+    const [pizza, setPizza] = useState<pizzaProps>({
+        "id": 0,
+        "name": "This pizza does not exist",
+        "price": -1,
+        "img":"fail"
+    })
+
+    useEffect(()=> {
+        for (const elem of pizzas) {
+            if (elem.id == id_nummer) {
+                setPizza(elem)
     
+    
+            }
+        }
+    
+    }, []   )
+    
+
+
+
     
     const whenRate = (e: React.MouseEvent<HTMLElement>) => {
         const rateList: HTMLElement[] = [
@@ -38,18 +72,13 @@ const Modal = () => {
 
         <div>
             <div className="modal" >
-                <img src="./Biffen.jpg" alt="hei" className="modalBilde" />
+                <img src={pizza.img} alt="hei" className="modalBilde" />
                 
             </div>
             <div className="modalInfo" >
                 
-                <h1 className="modalTitle"
-                
-
-                
-                
-                > Biff</h1>
-                <h3 className="modalPrice" >21,-</h3>
+                <h1 className="modalTitle">{pizza.name} </h1>
+                <h3 className="modalPrice" >{pizza.price} </h3>
                 <p className="modalDesc">En veldig fin pizza </p>
                 <div className="rating" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e)}} >
                     <span id="modalR1" >&#9734;</span>
