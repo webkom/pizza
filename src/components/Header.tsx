@@ -25,12 +25,16 @@ const NavBar = () => {
             title: "Statistics",
             to: "./#"
         },
+        {
+            title: "Login",
+            to: "./login"
+        },
     ];
 
     return (  
         <div className="navbar">
             {links.map((link: NavbarLink)=> (
-                <Link className={'link ${pathname === "/" ? "active" : ""}'} href='/'>
+                <Link key={link.title} className={'link ${pathname === "/" ? "active" : ""}'} href={link.to}>
                     {link.title}
                 </Link>
             ))}

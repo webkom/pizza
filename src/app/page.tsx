@@ -1,11 +1,12 @@
 'use client';
 import Image from 'next/image'
 import "./Page.css"
-import pizzas from "./pizzadata.json"
-import NavBar from './components/Header'
-import "./components/navbar.css" 
-import Modal from "./components/Modal"
-import { useState } from 'react';
+
+import NavBar from '../components/Header'
+import "../components/navbar.css" 
+import Modal from "../components/Modal"
+
+import { useEffect, useState } from 'react';
 
 
 export default function Home() {
@@ -21,6 +22,17 @@ export default function Home() {
   const ModalClose = () => {
     SelectedPizzaId("-1")
   }
+
+  const [pizzas, setPizzas] = useState([])
+  useEffect( () => {
+    const fetchPizzas = async () => {
+      const response = await fetch("http://localhost:3000/api/pizza")
+      const data = await response.json()
+      console.log(JSON.stringify(data[0]))
+      setPizzas(data)
+    }
+    fetchPizzas()
+  }, [])
 
   return (
     <main>
@@ -38,5 +50,5 @@ export default function Home() {
 
     <div className="ModalHent" >{selectedPizzaId !== "-1" && <Modal id_nummer={selectedPizzaId} func={ModalClose} />}</div>
     </main>
-  )
+  
 }

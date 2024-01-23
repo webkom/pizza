@@ -1,6 +1,6 @@
 'use client';
 import "./Modal.css"
-import pizzas from "../pizzadata.json"
+import pizzas from "../app/pizzadata.json"
 import { useEffect, useState } from "react";
 import { json } from "stream/consumers";
 
@@ -33,7 +33,7 @@ const Modal = ({id_nummer, func}: modalProps) => {
 
     useEffect(()=> {
         for (const elem of pizzas) {
-            if (elem.id == id_nummer) {
+            if (elem.id.toString() == id_nummer) {
                 setPizza(elem)
     
             }
@@ -46,7 +46,7 @@ const Modal = ({id_nummer, func}: modalProps) => {
 
     
     const whenRate = (e: React.MouseEvent<HTMLElement>) => {
-        const rateList: HTMLElement[] = [
+        const rateList: HTMLElement[]= [
             document.getElementById("modalR1"),
             document.getElementById("modalR2"),
             document.getElementById("modalR3"),
