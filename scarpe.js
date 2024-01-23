@@ -1,6 +1,4 @@
 
-
-//lagre = document.getElementById("lagre")
 pizza1 = document.getElementsByClassName("pizza_item")
 str = ""
 for (const ele of pizza1) {

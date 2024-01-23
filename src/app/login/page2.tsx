@@ -11,7 +11,6 @@ const Component = () => {
     const keyDownHandler = (e:any) => console.log(`You pressed ${e.code}.`);
     document.addEventListener("keydown", keyDownHandler);
 
-    // clean up
     return () => {
       document.removeEventListener("keydown", keyDownHandler);
     };
