@@ -23,7 +23,7 @@ const NavBar = () => {
         },
         {
             title: "Statistics",
-            to: "./#"
+            to: "./statistics"
         },
         {
             title: "Login",

@@ -15,3 +15,8 @@ export interface UserType extends Document {
   name: string;
   userName: string;
 }
+
+export interface RatingType extends Document {
+  rating: number;
+
+}
