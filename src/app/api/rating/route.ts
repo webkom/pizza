@@ -27,5 +27,5 @@ export async function POST(req: any) {
     pizza: new ObjectId(pizzaid),
     }, {rating: rating} );
   console.log("inside api", req.body, pizzaid, rating);
-  return new NextResponse(JSON.stringify("x"));
+  return new NextResponse(JSON.stringify(rating));
 }

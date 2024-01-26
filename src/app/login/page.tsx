@@ -20,12 +20,6 @@ export default function login() {
       },
       body: JSON.stringify(body),
     })
-
-   
-
-
-    
-
   }
 
 
@@ -43,7 +37,4 @@ export default function login() {
         </form>
         </div>
     )
-
-
-  
 }
