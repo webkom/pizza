@@ -2,8 +2,6 @@
 import "./Modal.css"
 import pizzas from "../app/pizzadata.json"
 import { useEffect, useState } from "react";
-import { json } from "stream/consumers";
-
 
 type pizzaProps = {
     "id":number,
@@ -22,7 +20,7 @@ type modalProps = {
 
 
 const Modal = ({id_nummer, func}: modalProps) => {
-
+    const user = "Shailesh"
 
     const [pizza, setPizza] = useState<pizzaProps>({
         "id": 0,
@@ -31,21 +29,57 @@ const Modal = ({id_nummer, func}: modalProps) => {
         "img":"fail"
     })
 
-    useEffect(()=> {
-        for (const elem of pizzas) {
-            if (elem.id.toString() == id_nummer) {
-                setPizza(elem)
-    
-            }
+    const findPizza = async () => {
+        
+        const link = "http://localhost:3000/api/pizza" + "?" + "pizzaId=" + id_nummer.toString();
+        const response = await fetch(link);
+        const data = await response.json();
+        setPizza(data)
+
+        const ratingLink = "http://localhost:3000/api/ratingOne" + "?" + "pizzaId=" + id_nummer.toString() + "&" + "userId=" + user;
+        const responseRate = await fetch(ratingLink);
+        const dataRate = await responseRate.json();
+
+        const num = Number.isInteger(dataRate.rating) ? ((Number(dataRate.rating) >= 0 && Number(dataRate.rating) <= 5 ) ? Number(dataRate.rating) : 0 ): 0;
+
+        const rateList: HTMLElement[]= [
+            document.getElementById("modalR1"),
+            document.getElementById("modalR2"),
+            document.getElementById("modalR3"),
+            document.getElementById("modalR4"),
+            document.getElementById("modalR5"),
+        ]
+        for (let i = 0; i < num; i++) {
+            rateList[i].innerHTML = "&#9733;";
         }
-    
+        for (let i = num; i < 5; i++) {
+            rateList[i].innerHTML = "&#9734;"
+        }
+
+      }
+    useEffect(()=> {  
+        findPizza();
     }, [id_nummer]   )
     
+    const addRate = async (num:number, id:string) => {
+        const body = {
+            rating: num,
+            pizzaid: id_nummer,
+            userid: user
+          }
+ 
+          const response = await fetch("http://localhost:3000/api/rating",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
 
+            },
+            body: JSON.stringify(body),
+          })
+    }
 
-
-    
-    const whenRate = (e: React.MouseEvent<HTMLElement>) => {
+    const whenRate = (e: React.MouseEvent<HTMLElement>, id:string) => {
         const rateList: HTMLElement[]= [
             document.getElementById("modalR1"),
             document.getElementById("modalR2"),
@@ -54,25 +88,20 @@ const Modal = ({id_nummer, func}: modalProps) => {
             document.getElementById("modalR5"),
         ]
         const num: number = parseInt(e.target.id[e.target.id.length-1])
-        for (let i = 0; i < num; i++) {
-            rateList[i].innerHTML = "&#9733;";
-            
-        }
-        for (let i = num; i < 5; i++) {
-            rateList[i].innerHTML = "&#9734;"
-            
-        }
-
-        /* her skal det kjøre en kode som oppdaterer verdien i databasen. */
+        addRate(num, id);
         
 
+        for (let i = 0; i < num; i++) {
+            rateList[i].innerHTML = "&#9733;"; 
+        }
+        for (let i = num; i < 5; i++) {
+            rateList[i].innerHTML = "&#9734;" 
+        }
     }
 
     const closeModal = () => {
         func()
     }
-
-
    
 
     return (
@@ -90,12 +119,12 @@ const Modal = ({id_nummer, func}: modalProps) => {
                 <h1 className="modalTitle" >{pizza.name} </h1>
                 <h3 className="modalPrice" >{pizza.price} </h3>
                 <p className="modalDesc">En veldig fin pizza </p>
-                <div className="rating" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e)}} >
-                    <span id="modalR1" >&#9734;</span>
-                    <span id="modalR2">&#9734;</span>
-                    <span id="modalR3">&#9734;</span>
-                    <span id="modalR4">&#9734;</span>
-                    <span id="modalR5">&#9734;</span>
+                <div className="rating"  >
+                    <span id="modalR1" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e, pizza.id)}}>&#9734;</span>
+                    <span id="modalR2" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e, pizza.id)}}>&#9734;</span>
+                    <span id="modalR3" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e, pizza.id)}}>&#9734;</span>
+                    <span id="modalR4" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e, pizza.id)}}>&#9734;</span>
+                    <span id="modalR5" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e, pizza.id)}}>&#9734;</span>
 
                 </div>
                 
@@ -115,5 +144,3 @@ const Modal = ({id_nummer, func}: modalProps) => {
 
 export default Modal;
 
-/* &#9733;
-&#9734; */
