@@ -14,18 +14,19 @@ export async function GET(request: NextRequest) {
 
 export async function POST(req: any) {
   await connection;
-  const { rating, pizzaid } = await req.json();
+  const { rating, pizzaid, name } = await req.json();
 
   await users.init();
-  const user = await users.findOne({ name: "Shailesh" });
+  const user = await users.findOne({ name: name });
 
-
-
-
-  await Rating.updateOne({
-    user: user.id,
-    pizza: new ObjectId(pizzaid),
-    }, {rating: rating} );
-  console.log("inside api", req.body, pizzaid, rating);
+  await Rating.init();
+  await Rating.findOneAndUpdate(
+    {
+      user: user.id,
+      pizza: new ObjectId(pizzaid),
+    },
+    { rating: rating },
+    { upsert: true }
+  );
   return new NextResponse(JSON.stringify(rating));
 }

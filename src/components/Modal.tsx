@@ -10,14 +10,10 @@ type pizzaProps = {
     "img":string,
 }
 
-
-
 type modalProps = {
     "id_nummer": string;
     "func": () => void;
-
 }
-
 
 const Modal = ({id_nummer, func}: modalProps) => {
     const user = "Shailesh"
@@ -38,7 +34,7 @@ const Modal = ({id_nummer, func}: modalProps) => {
 
         const ratingLink = "http://localhost:3000/api/ratingOne" + "?" + "pizzaId=" + id_nummer.toString() + "&" + "userId=" + user;
         const responseRate = await fetch(ratingLink);
-        const dataRate = await responseRate.json();
+        const dataRate = await responseRate.json() ?? "rating doesn't exist";
 
         const num = Number.isInteger(dataRate.rating) ? ((Number(dataRate.rating) >= 0 && Number(dataRate.rating) <= 5 ) ? Number(dataRate.rating) : 0 ): 0;
 
@@ -55,28 +51,26 @@ const Modal = ({id_nummer, func}: modalProps) => {
         for (let i = num; i < 5; i++) {
             rateList[i].innerHTML = "&#9734;"
         }
-
       }
     useEffect(()=> {  
         findPizza();
-    }, [id_nummer]   )
+    }, [id_nummer])
     
     const addRate = async (num:number, id:string) => {
         const body = {
             rating: num,
             pizzaid: id_nummer,
-            userid: user
-          }
- 
-          const response = await fetch("http://localhost:3000/api/rating",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
+            name: user
+        }
+        const response = await fetch("http://localhost:3000/api/rating",
+        {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
 
-            },
-            body: JSON.stringify(body),
-          })
+        },
+        body: JSON.stringify(body),
+        })
     }
 
     const whenRate = (e: React.MouseEvent<HTMLElement>, id:string) => {
@@ -90,7 +84,6 @@ const Modal = ({id_nummer, func}: modalProps) => {
         const num: number = parseInt(e.target.id[e.target.id.length-1])
         addRate(num, id);
         
-
         for (let i = 0; i < num; i++) {
             rateList[i].innerHTML = "&#9733;"; 
         }
@@ -103,11 +96,9 @@ const Modal = ({id_nummer, func}: modalProps) => {
         func()
     }
    
-
     return (
 
-        <div >
-            
+        <div > 
             <div className="modal" >
                 <img src={pizza.img} alt="hei" className="modalBilde" />
                 <div className="close" onClick={closeModal}>
@@ -115,7 +106,6 @@ const Modal = ({id_nummer, func}: modalProps) => {
                 </div>
             </div>
             <div className="modalInfo" >
-                
                 <h1 className="modalTitle" >{pizza.name} </h1>
                 <h3 className="modalPrice" >{pizza.price} </h3>
                 <p className="modalDesc">En veldig fin pizza </p>
@@ -125,21 +115,11 @@ const Modal = ({id_nummer, func}: modalProps) => {
                     <span id="modalR3" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e, pizza.id)}}>&#9734;</span>
                     <span id="modalR4" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e, pizza.id)}}>&#9734;</span>
                     <span id="modalR5" onClick={(e: React.MouseEvent<HTMLElement>) => { whenRate(e, pizza.id)}}>&#9734;</span>
-
                 </div>
-                
-
-
-
             </div>
-        
-        
         </div>
-        
 
-        
     )
-    
 }
 
 export default Modal;
