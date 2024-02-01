@@ -12,5 +12,5 @@ const pizzaSchema = new Schema(
   { collection: "pizzas" }
 );
 
-export default models.Pizza || model<PizzaType & Document>("Pizza", pizzaSchema);
-
+export default models.Pizza ||
+  model<PizzaType & Document>("Pizza", pizzaSchema);

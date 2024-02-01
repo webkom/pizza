@@ -8,9 +8,6 @@ export interface PizzaType extends Document {
   description: string;
 }
 
-
-
-
 export interface UserType extends Document {
   name: string;
   userName: string;
@@ -18,5 +15,4 @@ export interface UserType extends Document {
 
 export interface RatingType extends Document {
   rating: number;
-
 }
