@@ -1,16 +1,10 @@
-.navbar {
-    display: flex;
-    justify-content: space-around;
-}
-
-.navbar > a {
-    text-decoration: none;
+.loginLink {
     border-radius: 15px;
     padding: 5px;
     font-size: larger;
     background-color: lightblue;
-}
 
+}
 
 a:link { 
     text-decoration: none; 

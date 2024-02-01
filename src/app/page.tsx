@@ -1,14 +1,19 @@
 'use client';
 
 import "./Page.css"
+import { redirect } from 'next/navigation'
 
 import NavBar from '../components/Header'
-import "../components/navbar.css" 
 import Modal from "../components/Modal"
 
 import { useEffect, useState } from 'react';
 
 export default function Home() {
+
+  const user = localStorage.getItem("userNamePizza");
+  if (user == null) {
+    redirect("./login")
+  }
 
   const [selectedPizzaId, SelectedPizzaId] = useState("-1")
 
