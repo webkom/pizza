@@ -16,7 +16,7 @@ export default function login() {
     const body = {
       userName: e.currentTarget.elements.userName.value,
     };
-    console.log(body.userName);
+
     const response = await fetch(
       "http://localhost:3000/api/users?UserName=" + body.userName,
       {
