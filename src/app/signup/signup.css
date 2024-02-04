@@ -1,3 +1,6 @@
+#response {
+    visibility: hidden;
+}
 .loginLink {
     border-radius: 15px;
     padding: 5px;
@@ -6,6 +9,3 @@
 
 }
 
-#response1, #response2 {
-    visibility: hidden;
-}

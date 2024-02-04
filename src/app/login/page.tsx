@@ -1,51 +1,80 @@
-"use client"; 
-import { useEffect } from 'react'
+"use client";
 
-import NavBar from '@/components/Header';
-import { redirect } from 'next/navigation'
-import Link from 'next/link'
-import "./style.css" 
+import NavBar from "@/components/Header";
+
+import Link from "next/link";
+import "./style.css";
+import { useRouter } from "next/navigation";
+
 
 export default function login() {
-
-  const addUser = async (e:any) => {
+  
+  const router = useRouter();
+  const addUser = async (e: any) => {
     e.preventDefault();
-    localStorage.setItem("userNamePizza", e.currentTarget.elements.name.value.toString());
+
     const body = {
-      name: e.currentTarget.elements.name.value,
-      userName: e.currentTarget.elements.userName.value
+      userName: e.currentTarget.elements.userName.value,
+    };
+    console.log(body.userName);
+    const response = await fetch(
+      "http://localhost:3000/api/users?UserName=" + body.userName,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    const cookie = localStorage.getItem("userNamePizza");
+    if (cookie != null) {
+      const resp2 = document.getElementById("response2")
+      resp2.style.visibility = "visible";
+
+    } else if (data != null) {
+      localStorage.setItem(
+        "userNamePizza",
+        body.userName
+        );
+      router.push("./");
     }
-    const response = await fetch("http://localhost:3000/api/addUser",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-    
-  }
+    else {
+      const resp1 = document.getElementById("response1")
+      resp1.style.visibility = "visible";
 
+    }
+  };
 
-  return(
-        <div>
-        <NavBar/>
-        <br />
-    
-        <form onSubmit={addUser} method = "POST">
+  return (
+    <div>
+      <NavBar />
+      <br />
 
-            <label htmlFor="name">Skriv inn ditt brukernavn</label>
-            <input type="text" name="name" id="name" />
-            
-            <label htmlFor="userName">Skriv ditt passord</label>
-            <input type="text" name="userNdame" id="userName" />
+      <form onSubmit={addUser} method="POST">
+        <label htmlFor="userName">Skriv inn ditt brukernavn</label>
+        <input type="text" name="userName" id="userName" />
 
-            <input type="submit" value="submit" />
-        </form>
-        <br />
-        <Link key={"Signup"} className={"loginLink"} href={"./signup"}>
-            {"Signup"}
-        </Link>
-        </div>
-         )
+        <label htmlFor="password">Skriv ditt passord</label>
+        <input type="password" name="password" id="password" />
+
+        <input type="submit" value="submit" />
+      </form>
+      <br />
+      <div id="response1">
+      User does not exist, Try signing up
+      </div>
+      <div id="response2">
+      You are already signed in, try signing out first using the link in the upper right corner
+      </div>
+      <br />
+      <br />
+      <label htmlFor="">Don't have user? Try signing up! </label>
+      <br></br>
+      <br></br>
+      <Link key={"Signup"} className={"loginLink"} href={"./signup"}>
+        {"Signup"}
+      </Link>
+    </div>
+  );
 }
