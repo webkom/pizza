@@ -9,6 +9,5 @@ export async function POST(req: any) {
     userName: userName,
   });
   await person.save();
-  console.log("inside api", req.body, userName);
   return new NextResponse(JSON.stringify(person.userName));
 }
