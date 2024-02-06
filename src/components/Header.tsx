@@ -40,7 +40,7 @@ const NavBar = () => {
       setLinks([
         ...links,
         {
-          title: "Sign out",
+          title: "Sign out from " +localStorage.getItem("userNamePizza") ,
           to: "./signout",
         },
       ]);
