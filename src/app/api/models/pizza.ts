@@ -3,11 +3,11 @@ import { PizzaType } from "@/app/types";
 
 const pizzaSchema = new Schema(
   {
-    id: Number,
     name: String,
     price: Number,
     img: String,
     description: String,
+    veg: Boolean,
   },
   { collection: "pizzas" }
 );

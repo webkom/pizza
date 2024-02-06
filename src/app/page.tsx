@@ -1,6 +1,6 @@
 'use client';
 
-import "./Page.css"
+import "./page.css"
 import { redirect } from 'next/navigation'
 
 import NavBar from '../components/Header'

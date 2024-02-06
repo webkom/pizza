@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
 
   await users.init();
   const user = await users.findOne({
-    name: request.nextUrl.searchParams.get("userId"),
+    userName: request.nextUrl.searchParams.get("userId"),
   });
 
   await Rating.init();
