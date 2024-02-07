@@ -3,7 +3,6 @@ import { UserType } from "@/app/types";
 
 const userSchema = new Schema(
   {
-    name: String,
     userName: String,
   },
   { collection: "users" }

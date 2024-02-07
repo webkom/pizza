@@ -16,11 +16,11 @@ const NavBar = () => {
   const [links, setLinks] = useState<NavbarLink[]>([
     {
       title: "Pizza",
-      to: "./#",
+      to: "./",
     },
     {
       title: "Calculator",
-      to: "./#",
+      to: "./calculator",
     },
     {
       title: "Statistics",

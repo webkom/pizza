@@ -17,7 +17,7 @@ export async function POST(req: any) {
   const { rating, pizzaid, name } = await req.json();
 
   await users.init();
-  const user = await users.findOne({ name: name });
+  const user = await users.findOne({ userName: name });
 
   await Rating.init();
   await Rating.findOneAndUpdate(
