@@ -46,8 +46,7 @@ const Modal = ({ id_nummer, func }: modalProps) => {
     const responseRate = await fetch(ratingLink);
     const dataRate = (await responseRate.json()) ?? "rating doesn't exist";
 
-    const num = Number.isInteger(dataRate.rating)
-      ? Number(dataRate.rating) >= 0 && Number(dataRate.rating) <= 5
+    const num = Number.isInteger(dataRate.rating) ? Number(dataRate.rating) >= 0 && Number(dataRate.rating) <= 5
         ? Number(dataRate.rating)
         : 0
       : 0;
