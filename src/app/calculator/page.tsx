@@ -1,12 +1,11 @@
 "use client";
 import { ObjectId } from "mongodb";
 import "./page.css";
-import { redirect } from "next/navigation";
 import UserVer from "@/components/UserVer";
 
 import NavBar from "../../components/Header";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type userProps = {
   id: ObjectId;
@@ -14,7 +13,7 @@ type userProps = {
   auth: boolean;
 };
 
-export default function stats() {
+export default function Calculator() {
   const [selectedUsers, setSelectedUsers] = useState<userProps[]>([]);
 
   const addUserToList = async (e: any) => {
@@ -23,12 +22,11 @@ export default function stats() {
     const userName = e.currentTarget.elements.userName.value;
     e.currentTarget.elements.userName.value = "";
     const responseTest = await fetch(
-      "http://localhost:3000/api/users?UserName=" + userName
+      process.env.NEXT_PUBLIC_API_URL + "/api/users?UserName=" + userName
     );
     const medNavn = selectedUsers.filter((ele) => ele.userName == userName);
 
     const data = await responseTest.json();
-
 
     console.log(data);
     if (medNavn.length > 0) {
@@ -37,7 +35,7 @@ export default function stats() {
       setSelectedUsers([
         ...selectedUsers,
         {
-          id: "-1",
+          id: new ObjectId("-1"),
           userName: userName,
           auth: false,
         },
@@ -61,10 +59,7 @@ export default function stats() {
 
   const calculate = async (e: any) => {
     e.preventDefault();
-    const acceptedUser =  selectedUsers.filter((user:userProps) => 
-        user.auth 
-    );
-
+    const acceptedUser = selectedUsers.filter((user: userProps) => user.auth);
 
     const body = {
       userList: acceptedUser,
@@ -72,13 +67,18 @@ export default function stats() {
       vegetar: e.currentTarget.elements.veg.value,
     };
 
-    const response = await fetch("http://localhost:3000/api/calculate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }).then((response) => response.json()).then((pizza) => console.log(pizza))
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_API_URL + "/api/calculate",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    )
+      .then((response) => response.json())
+      .then((pizza) => console.log(pizza));
     //const data = response.json();
     //console.log(data+1)
   };
@@ -108,7 +108,12 @@ export default function stats() {
         </div>
 
         <label htmlFor="pizzaConst">Vi bruker pizzakonstanen </label>
-        <input type="text" name="pizzaConst" id="pizzaConst" defaultValue={2.67} />
+        <input
+          type="text"
+          name="pizzaConst"
+          id="pizzaConst"
+          defaultValue={2.67}
+        />
 
         <label htmlFor="veg">velg minste antall veganske pizzaer: </label>
         <input type="number" name="veg" id="veg" defaultValue={0} />

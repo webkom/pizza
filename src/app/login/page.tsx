@@ -6,9 +6,7 @@ import Link from "next/link";
 import "./style.css";
 import { useRouter } from "next/navigation";
 
-
-export default function login() {
-  
+export default function Login() {
   const router = useRouter();
   const addUser = async (e: any) => {
     e.preventDefault();
@@ -18,7 +16,7 @@ export default function login() {
     };
 
     const response = await fetch(
-      "http://localhost:3000/api/users?UserName=" + body.userName,
+      process.env.NEXT_PUBLIC_API_URL + "/api/users?UserName=" + body.userName,
       {
         method: "GET",
         headers: {
@@ -29,20 +27,14 @@ export default function login() {
     const data = await response.json();
     const cookie = localStorage.getItem("userNamePizza");
     if (cookie != null) {
-      const resp2 = document.getElementById("response2")
+      const resp2 = document.getElementById("response2");
       resp2.style.visibility = "visible";
-
     } else if (data != null) {
-      localStorage.setItem(
-        "userNamePizza",
-        body.userName
-        );
+      localStorage.setItem("userNamePizza", body.userName);
       router.push("./");
-    }
-    else {
-      const resp1 = document.getElementById("response1")
+    } else {
+      const resp1 = document.getElementById("response1");
       resp1.style.visibility = "visible";
-
     }
   };
 
@@ -61,15 +53,14 @@ export default function login() {
         <input type="submit" value="submit" />
       </form>
       <br />
-      <div id="response1">
-      User does not exist, Try signing up
-      </div>
+      <div id="response1">User does not exist, Try signing up</div>
       <div id="response2">
-      You are already signed in, try signing out first using the link in the upper right corner
+        You are already signed in, try signing out first using the link in the
+        upper right corner
       </div>
       <br />
       <br />
-      <label htmlFor="">Don't have user? Try signing up! </label>
+      <label>Don{"'"}t have user? Try signing up! </label>
       <br></br>
       <br></br>
       <Link key={"Signup"} className={"loginLink"} href={"./signup"}>

@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import connection from "../mongoose";
+import connection from "../../../mongoose";
 import Pizza from "../models/pizza";
 import { ObjectId } from "mongodb";
 
 export async function GET(request: NextRequest) {
-  await connection;
+  await dbConnect();
   await Pizza.init();
   if (request.nextUrl.searchParams.get("pizzaId") == null) {
     const pizzas = await Pizza.find({});

@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import connection from "../mongoose";
+import connection from "../../../mongoose";
 import Rating from "../models/rating";
 import users from "../models/users";
 import { ObjectId } from "mongodb";
 
 export async function GET(request: NextRequest) {
-  await connection;
+  await dbConnect();
 
   await users.init();
   const user = await users.findOne({

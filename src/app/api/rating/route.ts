@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import connection from "../mongoose";
+import connection from "../../../mongoose";
 import Rating from "../models/rating";
 import users from "../models/users";
 import { ObjectId } from "mongodb";
 
 export async function GET(request: NextRequest) {
-  await connection;
+  await dbConnect();
   await Rating.init();
   const ratings = await Rating.find();
 
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(req: any) {
-  await connection;
+  await dbConnect();
   const { rating, pizzaid, name } = await req.json();
 
   await users.init();

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import connection from "../mongoose";
+import connection from "../../../mongoose";
 import Pizza from "../models/pizza";
 import User from "../models/users";
 import Rating from "../models/rating";
@@ -7,7 +7,7 @@ import { ObjectId } from "mongodb";
 import pizza from "../models/pizza";
 
 export async function POST(req: any) {
-  await connection;
+  await dbConnect();
 
   console.log("Starter her");
   const { userList, pizzaConst, vegetar } = await req.json();
@@ -45,7 +45,7 @@ export async function POST(req: any) {
   }
 
   pizzas.sort((pizza1, pizza2) => pizza2.finalRating - pizza1.finalRating);
-  console.log(pizzas)
+  console.log(pizzas);
   const returPizza = [];
   for (let i = 0; i < antallVegetar; i++) {
     returPizza.push(pizzas.filter((pizza) => pizza.veg != null)[i]);
