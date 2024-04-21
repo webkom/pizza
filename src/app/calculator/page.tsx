@@ -13,7 +13,7 @@ type userProps = {
   auth: boolean;
 };
 
-export default function stats() {
+export default function Calculator() {
   const [selectedUsers, setSelectedUsers] = useState<userProps[]>([]);
 
   const addUserToList = async (e: any) => {
@@ -35,7 +35,7 @@ export default function stats() {
       setSelectedUsers([
         ...selectedUsers,
         {
-          id: "-1",
+          id: new ObjectId("-1"),
           userName: userName,
           auth: false,
         },

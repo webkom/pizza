@@ -6,7 +6,7 @@ import Link from "next/link";
 import "./style.css";
 import { useRouter } from "next/navigation";
 
-export default function login() {
+export default function Login() {
   const router = useRouter();
   const addUser = async (e: any) => {
     e.preventDefault();
@@ -60,7 +60,7 @@ export default function login() {
       </div>
       <br />
       <br />
-      <label htmlFor="">Don't have user? Try signing up! </label>
+      <label>Don{"'"}t have user? Try signing up! </label>
       <br></br>
       <br></br>
       <Link key={"Signup"} className={"loginLink"} href={"./signup"}>

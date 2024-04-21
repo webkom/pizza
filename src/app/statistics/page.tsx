@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [ratings, setRatings] = useState([]);
+  const [ratings, setRatings] = useState<
+    { rating: number; userName: string }[]
+  >([]);
   useEffect(() => {
     const fetchRating = async () => {
       const response = await fetch(
@@ -19,7 +21,7 @@ export default function Home() {
     <main>
       <div className="ratingBox">
         {ratings.map((rating) => (
-          <p>{rating.rating}</p>
+          <p key={rating.userName}>{rating.rating}</p>
         ))}
       </div>
     </main>

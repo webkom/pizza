@@ -5,7 +5,7 @@ import Link from "next/link";
 import "./signup.css";
 import { useRouter } from "next/navigation";
 
-export default function singup() {
+export default function Singup() {
   const router = useRouter();
   const addUser = async (e: any) => {
     e.preventDefault();
@@ -33,8 +33,8 @@ export default function singup() {
       );
       router.push("./");
     } else {
-      const respEle = document.getElementById("response");
-      respEle.style.visibility = "visible";
+      const respEl = document.getElementById("response");
+      respEl.style.visibility = "visible";
     }
   };
 
@@ -62,7 +62,6 @@ export default function singup() {
         <Link key={"login"} className={"loginLink"} href={"./login"}>
           loging in
         </Link>
-        "
       </h1>
     </div>
   );

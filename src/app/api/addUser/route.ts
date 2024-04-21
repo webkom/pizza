@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import users from "../models/users";
-import connection from "../mongoose";
+import connection from "../../../mongoose";
 export async function POST(req: any) {
-  await connection;
+  await dbConnect();
 
   const { userName } = await req.json();
   const person = new users({
