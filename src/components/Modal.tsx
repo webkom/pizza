@@ -27,7 +27,8 @@ const Modal = ({ id_nummer, func }: modalProps) => {
 
   const findPizza = async () => {
     const link =
-      "http://localhost:3000/api/pizza" +
+      process.env.NEXT_PUBLIC_API_URL +
+      "/api/pizza" +
       "?" +
       "pizzaId=" +
       id_nummer.toString();
@@ -36,7 +37,8 @@ const Modal = ({ id_nummer, func }: modalProps) => {
     setPizza(data);
 
     const ratingLink =
-      "http://localhost:3000/api/ratingOne" +
+      process.env.NEXT_PUBLIC_API_URL +
+      "/api/ratingOne" +
       "?" +
       "pizzaId=" +
       id_nummer.toString() +
@@ -76,13 +78,16 @@ const Modal = ({ id_nummer, func }: modalProps) => {
       pizzaid: id_nummer,
       name: user,
     };
-    const response = await fetch("http://localhost:3000/api/rating", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_API_URL + "/api/rating",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
   };
 
   const whenRate = (e: React.MouseEvent<HTMLElement>, id: string) => {

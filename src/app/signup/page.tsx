@@ -5,7 +5,7 @@ import Link from "next/link";
 import "./signup.css";
 import { useRouter } from "next/navigation";
 
-export default function login() {
+export default function singup() {
   const router = useRouter();
   const addUser = async (e: any) => {
     e.preventDefault();
@@ -15,19 +15,22 @@ export default function login() {
     };
 
     const responseTest = await fetch(
-      "http://localhost:3000/api/users?UserName=" + body.userName
+      process.env.NEXT_PUBLIC_API_URL + "/api/users?UserName=" + body.userName
     );
     const data = await responseTest.json();
 
     if (data == null && localStorage.getItem("usernamePizza") == null) {
       localStorage.setItem("userNamePizza", body.userName);
-      const response = await fetch("http://localhost:3000/api/addUser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_API_URL + "/api/addUser",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
       router.push("./");
     } else {
       const respEle = document.getElementById("response");
@@ -46,12 +49,7 @@ export default function login() {
 
       <form onSubmit={addUser} method="POST">
         <label htmlFor="useName">Skriv inn ditt brukernavn</label>
-        <input
-
-          type="text"
-          name="userName"
-          id="userName"
-        />
+        <input type="text" name="userName" id="userName" />
 
         <label htmlFor="password">Skriv ditt passord</label>
         <input type="text" name="password" id="password" />
