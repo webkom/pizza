@@ -1,12 +1,13 @@
 'use client';
 
-import "./page.css"
+import "./Page.css"
 import { redirect } from 'next/navigation'
 
 import NavBar from '../components/Header'
 import Modal from "../components/Modal"
 
 import { useEffect, useState } from 'react';
+import { PizzaType } from "./types";
 
 export default function Home() {
 
@@ -25,7 +26,7 @@ export default function Home() {
     SelectedPizzaId("-1")
   }
 
-  const [pizzas, setPizzas] = useState([])
+  const [pizzas, setPizzas] = useState<PizzaType[]>([])
   useEffect( () => {
     const fetchPizzas = async () => {
       const response = await fetch("http://localhost:3000/api/pizza")

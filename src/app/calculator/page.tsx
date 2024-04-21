@@ -1,7 +1,7 @@
 "use client";
 import { ObjectId } from "mongodb";
 import "./page.css";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 import UserVer from "@/components/UserVer";
 
 import NavBar from "../../components/Header";
@@ -14,7 +14,7 @@ type userProps = {
   auth: boolean;
 };
 
-export default function stats() {
+export default function Stats() {
   const [selectedUsers, setSelectedUsers] = useState<userProps[]>([]);
 
   const addUserToList = async (e: any) => {
@@ -37,7 +37,7 @@ export default function stats() {
       setSelectedUsers([
         ...selectedUsers,
         {
-          id: "-1",
+          id: new ObjectId(-1),
           userName: userName,
           auth: false,
         },
