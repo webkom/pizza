@@ -1,6 +1,5 @@
 "use client";
 
-import NavBar from "@/components/Header";
 import Link from "next/link";
 import "./signup.css";
 import { useRouter } from "next/navigation";
@@ -38,23 +37,21 @@ export default function Singup() {
     }
   };
 
-  /* const changeUsername = (e:any) => {
-    console.log(e.target.value.includes(","))
-  } */
-
   return (
-    <div>
-      <NavBar />
-      <br />
-
+    <div className="">
+      <h1>Sign up</h1>
       <form onSubmit={addUser} method="POST">
-        <label htmlFor="useName">Skriv inn ditt brukernavn</label>
-        <input type="text" name="userName" id="userName" />
-
-        <label htmlFor="password">Skriv ditt passord</label>
-        <input type="text" name="password" id="password" />
-
-        <input type="submit" value="submit" />
+        <div className="inputs">
+          <label htmlFor="useName">Skriv inn ditt brukernavn</label>
+          <input type="text" name="userName" id="userName" />
+        </div>
+        <div className="inputs">
+          <label htmlFor="password">Skriv ditt passord</label>
+          <input type="text" name="password" id="password" />
+        </div>
+        <div className="inputs">
+          <input type="submit" value="submit" />
+        </div>
       </form>
       {/* <h1 id="response1">userName cannot include a comma ","</h1> */}
       <h1 id="response">

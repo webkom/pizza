@@ -2,14 +2,14 @@
 
 import "./page.css";
 import { redirect } from "next/navigation";
-
-import NavBar from "../components/Header";
 import Modal from "../components/Modal";
 
 import { useEffect, useState } from "react";
+import { PizzaType } from "./types";
 
 export default function Home() {
-  const user = localStorage.getItem("userNamePizza");
+
+  const user = typeof window !== 'undefined' ? localStorage.getItem("userNamePizza") : null;
   if (user == null) {
     redirect("./login");
   }
@@ -38,14 +38,12 @@ export default function Home() {
 
   return (
     <main>
-      <NavBar />
-
       <h1 className="Header">VELKOMMEN TIL PIZZA-O-METER</h1>
 
       <div className="PizzaBox">
-        {pizzas.map((pizza) => (
+        {pizzas.map((pizza:PizzaType) => (
           <button
-            key={pizza.id}
+            key={pizza._id}
             onClick={() => ModalDisplay(pizza._id.toString())}
           >
             <div>

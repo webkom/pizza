@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 
 
 
-export default function Home() {
+export default function SignOut() {
   localStorage.removeItem("userNamePizza")
   redirect("./login");
 

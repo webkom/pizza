@@ -1,13 +1,18 @@
 .navbar {
     display: flex;
     justify-content: space-around;
+    padding: 25px 0;
+    background-color: white;
+    border-radius: 20px;
+    position: sticky;
+    top: 25px;
 }
 
 .navbar > a {
     text-decoration: none;
-    border-radius: 15px;
-    padding: 5px;
-    font-size: larger;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: x-large;
     background-color: lightblue;
 }
 

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Stattistics() {
   const [ratings, setRatings] = useState<
     { rating: number; userName: string }[]
   >([]);

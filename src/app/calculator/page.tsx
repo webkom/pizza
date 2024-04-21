@@ -3,8 +3,6 @@ import { ObjectId } from "mongodb";
 import "./page.css";
 import UserVer from "@/components/UserVer";
 
-import NavBar from "../../components/Header";
-
 import { useState } from "react";
 
 type userProps = {
@@ -84,7 +82,6 @@ export default function Calculator() {
   };
   return (
     <main>
-      <NavBar />
 
       <h1 className="Header">Pizza kalkulatoren</h1>
 

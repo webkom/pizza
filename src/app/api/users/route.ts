@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import connection from "../../../mongoose";
+import dbConnect from "../../../mongoose";
 import User from "../models/users";
 
 export async function GET(request: NextRequest) {

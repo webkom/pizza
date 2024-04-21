@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import connection from "../../../mongoose";
+import dbConnect from "../../../mongoose";
 import Pizza from "../models/pizza";
 import User from "../models/users";
 import Rating from "../models/rating";

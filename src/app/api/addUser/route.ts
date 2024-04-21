@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import users from "../models/users";
-import connection from "../../../mongoose";
+import dbConnect from "../../../mongoose";
 export async function POST(req: any) {
   await dbConnect();
 

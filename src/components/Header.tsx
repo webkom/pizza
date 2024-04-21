@@ -12,7 +12,10 @@ type NavbarLink = {
 
 const NavBar = () => {
   const pathname = usePathname();
-  const user = localStorage.getItem("userNamePizza");
+  const user =
+    typeof window !== "undefined"
+      ? localStorage.getItem("userNamePizza")
+      : null;
   const [links, setLinks] = useState<NavbarLink[]>([
     {
       title: "Pizza",
@@ -40,7 +43,7 @@ const NavBar = () => {
       setLinks([
         ...links,
         {
-          title: "Sign out from " +localStorage.getItem("userNamePizza") ,
+          title: "Sign out from " + localStorage.getItem("userNamePizza"),
           to: "./signout",
         },
       ]);

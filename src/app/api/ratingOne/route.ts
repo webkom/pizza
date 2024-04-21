@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import connection from "../../../mongoose";
+import dbConnect from "../../../mongoose";
 import Rating from "../models/rating";
 import users from "../models/users";
 import { ObjectId } from "mongodb";

@@ -1,7 +1,5 @@
 "use client";
 
-import NavBar from "@/components/Header";
-
 import Link from "next/link";
 import "./style.css";
 import { useRouter } from "next/navigation";
@@ -40,13 +38,10 @@ export default function Login() {
 
   return (
     <div>
-      <NavBar />
-      <br />
-
       <form onSubmit={addUser} method="POST">
         <label htmlFor="userName">Skriv inn ditt brukernavn</label>
         <input type="text" name="userName" id="userName" />
-
+        <br />
         <label htmlFor="password">Skriv ditt passord</label>
         <input type="password" name="password" id="password" />
 
